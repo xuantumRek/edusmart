@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edusmart-backend
+  labels:
+    app: edusmart-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edusmart-backend
+  template:
+    metadata:
+      labels:
+        app: edusmart-backend
+    spec:
+      containers:
+      - name: edusmart-backend
+        image: edusmart-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: edusmart-config
+        - secretRef:
+            name: edusmart-secret
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"

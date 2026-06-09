@@ -16,26 +16,18 @@ spec:
       containers:
         - name: backend
           image: 590144423099.dkr.ecr.ap-southeast-2.amazonaws.com/edusmart-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: edusmart-secrets
-                  key: DATABASE_URL
-            - name: AZURE_STORAGE_CONNECTION_STRING
-              valueFrom:
-                secretKeyRef:
-                  name: edusmart-secrets
-                  key: AZURE_STORAGE_CONNECTION_STRING
-            - name: GEMINI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: edusmart-secrets
-                  key: GEMINI_API_KEY
-            - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: edusmart-secrets
-                  key: JWT_SECRET
+          envFrom:
+            - configMapRef:
+                name: edusmart-config
+            - secretRef:
+                name: edusmart-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"

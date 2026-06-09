@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: edusmart-config
+  namespace: edusmart
+spec:
+data:
+  APP_PORT: "8080"
+  AZURE_CONTAINER_NAME: "avatars"
+  AZURE_MATERIALS_CONTAINER_NAME: "materials"
+  MAX_MATERIAL_FILE_SIZE_MB: "20"
+  GEMINI_MODEL: "gemini-2.5-flash"

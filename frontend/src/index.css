@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0F0F0F;
+    --surface: #1A1A1A;
+    --surface-raised: #222222;
+    --surface-hover: #282828;
+    
+    --border: #2E2E2E;
+    --border-focus: #C9963A;
+    
+    --text-primary: #E8E6E1;
+    --text-secondary: #7A7773;
+    --text-disabled: #444240;
+    
+    --accent: #C9963A;
+    --accent-dim: #3A2C15;
+    --accent-hover: #DBA84A;
+    
+    --success: #5A8A6A;
+    --success-dim: #1A2E22;
+    --warning: #A08030;
+    --warning-dim: #2A2010;
+    --danger: #A85252;
+    --danger-dim: #2E1515;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+
+    --radius-sm: 3px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-body antialiased;
+  }
+}
+
+@layer components {
+  /* Editorial Label */
+  .editorial-label {
+    @apply text-[11px] font-medium leading-[1.4] tracking-[0.1em] text-text-secondary uppercase font-body;
+  }
+
+  /* Base Button */
+  .btn {
+    @apply px-5 py-2.5 rounded-[3px] font-semibold text-[15px] leading-[1.6] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+  
+  .btn-primary {
+    @apply bg-accent text-[#0F0F0F] hover:bg-accent-hover disabled:opacity-35 disabled:cursor-not-allowed disabled:hover:bg-accent;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-border text-text-primary hover:bg-surface-hover hover:border-border-focus disabled:opacity-35 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-transparent border border-danger text-danger hover:bg-danger-dim disabled:opacity-35 disabled:cursor-not-allowed;
+  }
+
+  /* Input */
+  .input-field {
+    @apply bg-surface-raised border border-border text-text-primary placeholder-text-disabled rounded-[3px] px-[14px] py-[12px] w-full focus:outline-none focus:border-accent transition-colors;
+  }
+
+  /* Grade Badge */
+  .grade-badge {
+    @apply font-mono text-[13px] font-medium px-2 py-0.5 rounded-[3px];
+  }
+  .grade-badge.a { @apply bg-success-dim text-success border border-success border-opacity-30; }
+  .grade-badge.b { @apply bg-warning-dim text-warning; }
+  .grade-badge.c { @apply bg-warning-dim text-warning opacity-80; }
+  .grade-badge.d { @apply bg-danger-dim text-danger; }
+}
+
+/* SweetAlert2 Dark/Gold Theme Overrides */
+.swal2-popup {
+  background-color: var(--surface) !important;
+  background: var(--surface) !important;
+  border: 2px solid var(--accent) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7) !important;
+}
+
+.swal2-title {
+  color: var(--text-primary) !important;
+  font-family: inherit !important;
+}
+
+.swal2-html-container {
+  color: var(--text-secondary) !important;
+  font-family: inherit !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-color: var(--warning) !important;
+  color: var(--warning) !important;
+}
+.swal2-icon.swal2-error {
+  border-color: var(--danger) !important;
+  color: var(--danger) !important;
+}
+.swal2-icon.swal2-success {
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+.swal2-icon.swal2-info {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+.swal2-icon.swal2-question {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+.swal2-confirm.swal2-styled {
+  background-color: var(--accent) !important;
+  color: #0F0F0F !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+.swal2-confirm.swal2-styled:hover {
+  background-color: var(--accent-hover) !important;
+}
+
+.swal2-cancel.swal2-styled {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.swal2-cancel.swal2-styled:hover {
+  background-color: var(--surface-hover) !important;
+  border-color: var(--border-focus) !important;
+}
+

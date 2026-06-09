@@ -30,3 +30,4 @@ Thumbs.db
 
 # Kubernetes secrets
 infra/k8s/*-secret.yaml
+secrets.yaml

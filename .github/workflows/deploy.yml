@@ -29,8 +29,12 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/edusmart-frontend:$IMAGE_TAG ./frontend
-          docker build -t $ECR_REGISTRY/edusmart-frontend:latest ./frontend
+          docker build \
+            --build-arg VITE_API_URL=http://k8s-edusmart-edusmart-c1b135630b-2024521215.ap-southeast-2.elb.amazonaws.com/api/v1 \
+            -t $ECR_REGISTRY/edusmart-frontend:$IMAGE_TAG ./frontend
+          docker build \
+            --build-arg VITE_API_URL=http://k8s-edusmart-edusmart-c1b135630b-2024521215.ap-southeast-2.elb.amazonaws.com/api/v1 \
+            -t $ECR_REGISTRY/edusmart-frontend:latest ./frontend
           docker push $ECR_REGISTRY/edusmart-frontend:$IMAGE_TAG
           docker push $ECR_REGISTRY/edusmart-frontend:latest
 

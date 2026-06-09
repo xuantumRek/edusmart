@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: edusmart
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: 590144423099.dkr.ecr.ap-southeast-2.amazonaws.com/edusmart-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: edusmart-secrets
+                  key: DATABASE_URL
+            - name: AZURE_STORAGE_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: edusmart-secrets
+                  key: AZURE_STORAGE_CONNECTION_STRING
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: edusmart-secrets
+                  key: GEMINI_API_KEY
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: edusmart-secrets
+                  key: JWT_SECRET

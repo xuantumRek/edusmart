@@ -16,8 +16,13 @@ spec:
       containers:
         - name: frontend
           image: 590144423099.dkr.ecr.ap-southeast-2.amazonaws.com/edusmart-frontend:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 3000
-          env:
-            - name: VITE_API_URL
-              value: "http://backend-service.edusmart.svc.cluster.local:8000"
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
